@@ -1,8 +1,10 @@
+import { Routes } from "./routes";
+import { Theme } from "./themes/theme";
 
 export const App = () => {
   return (
-    <div className="App">
-      Atenda
-    </div>
+    <Theme>
+      <Routes />
+    </Theme>
   );
 }
