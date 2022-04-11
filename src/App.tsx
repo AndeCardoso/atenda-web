@@ -1,10 +1,10 @@
-import { Routes } from "routes";
-import { Theme } from "themes/theme";
+import { Routes } from 'routes';
+import { AppThemeProvider } from 'shared/context/ThemeContext';
 
 export const App = () => {
   return (
-    <Theme>
+    <AppThemeProvider>
       <Routes />
-    </Theme>
+    </AppThemeProvider>
   );
-}
+};
