@@ -1,19 +1,42 @@
-import { useState } from 'react';
-import { Button, InputLabel, OutlinedInput } from '@mui/material';
-import Container from '@mui/material/Container';
-import { useAppThemeContext } from 'shared/context/ThemeContext';
+import RocketLaunch from '@mui/icons-material/RocketLaunch';
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import BgHome from 'assets/img/background.jpg';
 
 export const Home = () => {
-  const [name, setName] = useState('teset');
-
-  const { toggleTheme } = useAppThemeContext();
-
   return (
-    <Container>
-      <InputLabel htmlFor='nome'>Nome</InputLabel>
-      <OutlinedInput placeholder='Ex.: Maria' name='nome' />
-
-      <Button variant='contained' onClick={toggleTheme}>Mudar Tema</Button>
-    </Container>
+    <Box
+      width="100vw"
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      sx={{
+        background: `url(${BgHome})`,
+        backgroundRepeat: 'none',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
+      <Box
+        display="flex"
+        alignItems="center"
+        marginTop="-390px"
+      >
+        <Typography
+          fontSize="90px"
+          fontWeight="700"
+          color="#fff"
+        >
+          ATENDA
+        </Typography>
+        <RocketLaunch 
+          sx={{
+            width: '90px',
+            height: 'auto',
+            fill: '#fff'
+          }}
+        />
+      </Box>
+    </Box>
   );
 };
