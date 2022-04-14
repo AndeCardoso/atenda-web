@@ -4,6 +4,7 @@ import {
   ListItemText,
   ListItemButton,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 interface IObjectKeys {
   [key: string]: string | number;
@@ -12,6 +13,7 @@ interface IObjectKeys {
 interface IProps {
   label: string;
   icon: string;
+  link: string;
 }
 
 interface IIcons extends IObjectKeys{
@@ -21,7 +23,7 @@ interface IIcons extends IObjectKeys{
 }
 
 export const ListItemComponent = (props: IProps): JSX.Element => {
-  const { label, icon } = props;
+  const { label, icon, link } = props;
 
   const muiIcons: IIcons = {
     newOS: 'edit_note',
@@ -30,13 +32,15 @@ export const ListItemComponent = (props: IProps): JSX.Element => {
   };
 
   return (
-    <ListItem disablePadding>
-      <ListItemButton>
-        <ListItemIcon style={{minWidth: 33}}>
-          <span className="material-icons">{muiIcons[icon]}</span>
-        </ListItemIcon>
-        <ListItemText primary={label} />
-      </ListItemButton>
-    </ListItem>
+    <Link to={link} style={{textDecoration: 'none', color: 'inherit'}}>
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon style={{minWidth: 33}}>
+            <span className="material-icons">{muiIcons[icon]}</span>
+          </ListItemIcon>
+          <ListItemText primary={label} />
+        </ListItemButton>
+      </ListItem>
+    </Link>
   );
 };
