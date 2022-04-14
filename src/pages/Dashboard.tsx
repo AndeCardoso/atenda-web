@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+
 import { Box, IconButton, Switch, useTheme } from '@mui/material';
 import { Menu, LightbulbOutlined } from '@mui/icons-material';
 
@@ -20,20 +22,32 @@ export const Dashboard = () => {
 
   return (
     <>
-      <SideBar open={open}/>
-      <Box
-        height="100vh"
-        marginLeft={margin}
-        display="flex"
-        alignItems="flex-start"
-        justifyContent="space-between"
-      >
-        <IconButton onClick={toggleSidebar}>
-          <Menu />
-        </IconButton>
-        <Box display="flex" alignItems="center">
-          <LightbulbOutlined />
-          <Switch defaultChecked onChange={toggleTheme} />
+      <Box>
+        <SideBar open={open}/>
+        <Box
+          marginLeft={margin}
+          display="flex"
+          alignItems="flex-start"
+          justifyContent="space-between"
+          marginBottom={theme.spacing(5)}
+        >
+          <IconButton onClick={toggleSidebar}>
+            <Menu />
+          </IconButton>
+          <Box display="flex" alignItems="center">
+            <LightbulbOutlined />
+            <Switch defaultChecked onChange={toggleTheme} />
+          </Box>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="flex-start"
+          marginLeft={margin}
+          padding={`0 ${theme.spacing(15)}`}
+        >
+          <Outlet />
         </Box>
       </Box>
     </>

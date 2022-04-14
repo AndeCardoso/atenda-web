@@ -18,9 +18,9 @@ export const SideBar = (props: IProps): JSX.Element => {
   const { open } = props;
 
   const menuItems = [
-    { label: 'Nova OS', icon: 'newOS'},
-    { label: 'Cadastrar Cliente', icon: 'newClient'},
-    { label: 'Atendimento', icon: 'schedule'},
+    { label: 'Nova OS', icon: 'newOS', link: '/dashboard/cadastro-os'},
+    { label: 'Cadastrar Cliente', icon: 'newClient', link: '/dashboard/cadastro-cliente'},
+    { label: 'Atendimento', icon: 'schedule', link: '/dashboard/atendimento'},
   ];
   
   return (
@@ -50,7 +50,11 @@ export const SideBar = (props: IProps): JSX.Element => {
             {
               menuItems.map(item => (
                 <>
-                  <ListItemComponent label={item.label} icon={item.icon} />
+                  <ListItemComponent
+                    label={item.label}
+                    icon={item.icon}
+                    link={item.link}
+                  />
                 </>
               ))
             }
