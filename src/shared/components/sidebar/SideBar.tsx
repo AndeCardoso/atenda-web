@@ -4,6 +4,7 @@ import {
   Drawer,
   Avatar,
 } from '@mui/material';
+import { Key } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { ListItemComponent } from '../list-item/ListItem';
 
@@ -12,12 +13,20 @@ interface IProps {
   children?: React.ReactNode;
 }
 
+interface IMenuItem {
+  index?: Key | null | undefined;
+  label: string;
+  icon: string;
+  link: string;
+}
+
 export const SideBar = (props: IProps): JSX.Element => {
   const theme = useTheme();
 
   const { open } = props;
 
-  const menuItems = [
+  const menuItems: IMenuItem[] = [
+    { label: 'Inicio', icon: 'home', link: '/dashboard'},
     { label: 'Nova OS', icon: 'newOS', link: '/dashboard/cadastro-os'},
     { label: 'Cadastrar Cliente', icon: 'newClient', link: '/dashboard/cadastro-cliente'},
     { label: 'Atendimento', icon: 'schedule', link: '/dashboard/atendimento'},
@@ -54,6 +63,7 @@ export const SideBar = (props: IProps): JSX.Element => {
                     label={item.label}
                     icon={item.icon}
                     link={item.link}
+                    key={item.index}
                   />
                 </>
               ))
