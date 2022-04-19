@@ -1,7 +1,7 @@
 import RocketLaunch from '@mui/icons-material/RocketLaunch';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import BgHome from 'assets/img/background.jpg';
+import BgHome from 'assets/imgs/background.jpg';
 
 export const Home = () => {
   return (
