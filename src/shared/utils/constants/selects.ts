@@ -35,3 +35,10 @@ export const ufBrStates = <IViewValue[]>[
   {VIEW: 'GO', VALUE: 'GO'},
   {VIEW: 'DF', VALUE: 'DF'},
 ].sort((cur, nex) => cur.VALUE > nex.VALUE ? 1 : ((nex.VALUE > cur.VALUE) ? -1 : 0));
+
+export const typesEquip = <IViewValue[]>[
+  {VIEW: 'Desktop', VALUE: 'desktop'},
+  {VIEW: 'Notebook', VALUE: 'notebook'},
+  {VIEW: 'Celular', VALUE: 'celular'},
+  {VIEW: 'Tablet', VALUE: 'tablet'}
+];

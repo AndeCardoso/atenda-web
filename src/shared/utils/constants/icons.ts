@@ -6,12 +6,14 @@ export interface IIcons extends IObjectKeys{
   home: string;
   newOS: string;
   newClient: string;
-  schedule: string;
+  calendar: string;
+  technician: string;
 }
 
 export const muiIcons: IIcons = {
   home: 'home',
   newOS: 'edit_note',
   newClient: 'assignment_ind',
-  schedule: 'calendar_month',
+  calendar: 'calendar_month',
+  technician: 'handyman',
 };
