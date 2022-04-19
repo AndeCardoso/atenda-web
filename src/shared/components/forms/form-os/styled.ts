@@ -13,21 +13,14 @@ export const Title = styled.h1`
   color: #35AB9F;
 `;
 
-export const WrapperInputs = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-
-export const LegendAddress = styled.legend`
+export const Legend = styled.legend`
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.28);
 `;
 
-export const FieldsetAddress = styled.fieldset`
+export const Fieldset = styled.fieldset`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -35,6 +28,13 @@ export const FieldsetAddress = styled.fieldset`
   padding: 15px;
   margin-top: 10px;
   border: 0.5px solid rgba(0, 0, 0, 0.23);
+`;
+
+export const WrapperInputs = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 
 export const WrapperButton = styled.div`
