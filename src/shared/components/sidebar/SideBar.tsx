@@ -14,7 +14,7 @@ interface IProps {
 }
 
 interface IMenuItem {
-  index?: Key | null | undefined;
+  [x: string]: Key | null | undefined;
   label: string;
   icon: string;
   link: string;
@@ -26,10 +26,11 @@ export const SideBar = (props: IProps): JSX.Element => {
   const { open } = props;
 
   const menuItems: IMenuItem[] = [
-    { label: 'Inicio', icon: 'home', link: '/dashboard'},
-    { label: 'Nova OS', icon: 'newOS', link: '/dashboard/cadastro-os'},
-    { label: 'Cadastrar Cliente', icon: 'newClient', link: '/dashboard/cadastro-cliente'},
-    { label: 'Atendimento', icon: 'schedule', link: '/dashboard/atendimento'},
+    { label: 'Inicio', icon: 'home', link: '/dashboard' },
+    { label: 'Nova OS', icon: 'newOS', link: '/dashboard/cadastro-os' },
+    { label: 'Cadastrar Cliente', icon: 'newClient', link: '/dashboard/cadastro-cliente' },
+    { label: 'Atendimento', icon: 'calendar', link: '/dashboard/atendimento' },
+    { label: 'Cadastrar Técnico', icon: 'technician', link: '/dashboard/cadastro-tecnico' },
   ];
   
   return (
