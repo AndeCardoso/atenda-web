@@ -1,5 +1,5 @@
 import { Routes } from 'routes';
-import { AppThemeProvider } from 'shared/context/ThemeContext';
+import { AppThemeProvider } from 'context/ThemeContext';
 
 export const App = () => {
   return (

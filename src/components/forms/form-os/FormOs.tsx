@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 
 import * as S from './styles';
-import { typesEquip } from 'shared/utils/constants';
+import { typesEquip } from 'utils/constants';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 

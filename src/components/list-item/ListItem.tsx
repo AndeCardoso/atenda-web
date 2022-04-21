@@ -5,7 +5,7 @@ import {
   ListItemButton,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { muiIcons } from 'shared/utils/constants';
+import { muiIcons } from 'utils/constants';
 
 interface IProps {
   label: string;

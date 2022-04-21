@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom';
 import { AppBar, Box, IconButton, Switch, useTheme } from '@mui/material';
 import { Menu, LightbulbOutlined, CalendarMonth, DownloadOutlined } from '@mui/icons-material';
 
-import { useAppThemeContext } from 'shared/context/ThemeContext';
+import { useAppThemeContext } from 'context/ThemeContext';
 
-import { SideBar } from 'shared/components';
+import { SideBar } from 'components';
 
 export const Dashboard = () => {
   const theme = useTheme();

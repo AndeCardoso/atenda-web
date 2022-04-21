@@ -1,30 +1,55 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Button, Grid, FormControl, MenuItem, InputLabel, Select, TextField, Paper } from '@mui/material';
+import {
+  Button,
+  Grid,
+  FormControl,
+  MenuItem,
+  InputLabel,
+  Select,
+  TextField,
+  Checkbox,
+  FormControlLabel,
+  Paper,
+} from '@mui/material';
 
-import { ufBrStates } from 'shared/utils/constants';
-import { IClientForm } from 'shared/models';
+import { ufBrStates, typesEquip } from 'utils/constants';
+import { ITechnicianForm } from 'models';
 
 import * as S from './styles';
 
-export const FormClient = () => {
+export const FormTechnician = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IClientForm>();
+  } = useForm<ITechnicianForm>();
 
-  const onSubmit: SubmitHandler<IClientForm> = (data) => {
+  const onSubmit: SubmitHandler<ITechnicianForm> = (data) => {
     console.log(data);
   };
 
   return (
     <Paper elevation={3}>
       <S.FormContainer>
-        <S.Title>Cadastrar Cliente</S.Title>
+        <S.Title>Cadastrar Técnico</S.Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.WrapperInputs>
             <Grid container spacing={1}>
-              <Grid item xs={5}>
+              <Grid item xs={1.4}>
+                <TextField
+                  label="Código"
+                  {...register('code', { required: true })}
+                  id="code"
+                  variant="outlined"
+                  size="small"
+                  inputMode="numeric"
+                  type="number"
+                  value={'001'}
+                  disabled
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={6}>
                 <TextField
                   label="Nome"
                   {...register('name', { required: true })}
@@ -76,8 +101,8 @@ export const FormClient = () => {
                   fullWidth
                 />
               </Grid>
-              <S.FieldsetAddress>
-                <S.LegendAddress>Endereço</S.LegendAddress>
+              <S.Fieldset>
+                <S.Legend>Endereço</S.Legend>
                 <Grid container spacing={1}>
                   <Grid item xs={8}>
                     <TextField
@@ -156,13 +181,47 @@ export const FormClient = () => {
                     </FormControl>
                   </Grid>
                 </Grid>
-              </S.FieldsetAddress>
+              </S.Fieldset>
+              <S.Fieldset>
+                <S.Legend>Cargos e Responsabilidades</S.Legend>
+                <Grid container spacing={1}>
+                  <Grid item xs={4}>
+                    <FormControl fullWidth size="small">
+                      <InputLabel id="typeEquip">Área de Atuação</InputLabel>
+                      <Select
+                        label="Área de Atuação"
+                        {...register('duty', { required: true })}
+                        defaultValue=""
+                        labelId="typeEquip"
+                        id="typeEquip"
+                        size="small"
+                        variant="outlined"
+                        required
+                      >
+                        {typesEquip.map((type) => (
+                          <MenuItem value={type.VALUE} key={type.index}>
+                            {type.VIEW}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                      {...register('externService')}
+                      sx={{ marginLeft: '10px', width: '100%' }}
+                      label="Atendimento externo"
+                      control={<Checkbox defaultChecked />}
+                    />
+                  </Grid>
+                </Grid>
+              </S.Fieldset>
             </Grid>
           </S.WrapperInputs>
           <S.WrapperButton>
             <Button type="reset">Limpar</Button>
             <Button variant="contained" type="submit">
-              Salvar
+            Salvar
             </Button>
           </S.WrapperButton>
         </form>
