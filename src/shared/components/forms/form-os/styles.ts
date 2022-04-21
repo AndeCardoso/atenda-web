@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.section`
   max-width: 700px;
+  padding: 5px 15px 20px;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -10,14 +11,7 @@ export const Title = styled.h1`
   display: flex;
   text-transform: uppercase;
   font-size: 32px;
-  color: #35AB9F;
-`;
-
-export const WrapperInputs = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  color: #35ab9f;
 `;
 
 export const Legend = styled.legend`
@@ -35,6 +29,13 @@ export const Fieldset = styled.fieldset`
   padding: 15px;
   margin-top: 10px;
   border: 0.5px solid rgba(0, 0, 0, 0.23);
+`;
+
+export const WrapperInputs = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 
 export const WrapperButton = styled.div`
