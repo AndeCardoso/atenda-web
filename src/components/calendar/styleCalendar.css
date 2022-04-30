@@ -1,7 +1,12 @@
+:root {
+  --primary: #523FC0;
+  --secondary: #FF4C9A;
+}
+
 .fc {
   background-color: #ffffff;
-  color: #35AB9F;
-  width: 980px;
+  color: var(--primary);
+  width: 100%;
   height: 600px;
   border-radius: 5px;
   margin-bottom: 15px;
@@ -12,24 +17,24 @@
 }
 
 .fc-direction-ltr .fc-button-group > .fc-button{
-  background-color: #E3FFFF;
-  border-color: #35AB9F;
+  background-color: var(--secondary);
+  border-color: var(--primary);
 }
 
 .fc .fc-button-primary:disabled {
-  background-color: #E3FFFF;
-  color: #35AB9F;
-  border-color: #35AB9F;
+  background-color: var(--secondary);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 .fc .fc-button-primary {
-  background-color: #E3FFFF;
-  color: #35AB9F;
-  border-color: #35AB9F;
+  background-color: var(--secondary);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 .fc-header-toolbar {
-  background-color: #35AB9F;
+  background-color: var(--primary);
   color: #ffffff;
   border-radius: 5px;
   height: 40px;

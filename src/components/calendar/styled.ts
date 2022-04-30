@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 
 export const FormContainer = styled.section`
-  max-width: 980px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 30px;
 `;
 
 export const Title = styled.h1`
-  display: flex;
+  align-self: flex-start;
   text-transform: uppercase;
   font-size: 32px;
-  color: #35AB9F;
+`;
+
+export const Calendar = styled.div`
+  width: 100%;
 `;
