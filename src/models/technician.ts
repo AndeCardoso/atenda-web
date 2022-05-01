@@ -1,5 +1,5 @@
 export interface ITechnicianForm {
-  code: string;
+  code: number;
   cpf?: string;
   name: string;
   phone: string;
@@ -18,7 +18,7 @@ interface IAddress {
   cep?: string;
 }
 
-type Duty = [
+export type Duty = [
   'desktop',
   'notebook',
   'celular',

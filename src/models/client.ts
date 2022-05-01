@@ -3,7 +3,7 @@ export interface IClientForm {
   name: string;
   phone: string;
   email?: string;
-  address: IAddress;
+  address?: IAddress;
 }
 
 interface IAddress {
