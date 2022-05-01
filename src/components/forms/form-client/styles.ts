@@ -9,9 +9,6 @@ export const FormContainer = styled.section`
 
 export const Title = styled.h1`
   display: flex;
-  text-transform: uppercase;
-  font-size: 32px;
-  color: #35ab9f;
 `;
 
 export const WrapperInputs = styled.div`
@@ -21,14 +18,14 @@ export const WrapperInputs = styled.div`
   align-items: flex-end;
 `;
 
-export const LegendAddress = styled.legend`
+export const Legend = styled.legend`
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.28);
 `;
 
-export const FieldsetAddress = styled.fieldset`
+export const Fieldset = styled.fieldset`
   width: 100%;
   display: flex;
   flex-wrap: wrap;

@@ -1,138 +1,142 @@
+import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Button, Grid, FormControl, MenuItem, InputLabel, Select, TextField, Paper } from '@mui/material';
+import { Button, Grid, FormControl, MenuItem, InputLabel, Select, Paper, Typography, Box } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { create } from 'store/Client.store';
+import { RootState } from 'store';
 
 import { ufBrStates } from 'utils/constants';
 import { IClientForm } from 'models';
 
+import { AppInput } from 'shared';
 import * as S from './styles';
 
 export const FormClient = () => {
+  const dispatch = useDispatch();
+  const client = useSelector<RootState>((state: RootState) => state.client);
+
   const {
+    control,
     register,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit
   } = useForm<IClientForm>();
 
   const onSubmit: SubmitHandler<IClientForm> = (data) => {
-    console.log(data);
+    dispatch(create(data));
   };
+
+  useEffect(() => {
+    console.log(client);
+  }, [client]);
+  
 
   return (
     <Paper elevation={3}>
       <S.FormContainer>
-        <S.Title>Cadastrar Cliente</S.Title>
+        <S.Title>
+          <Typography
+            color='primary'
+            sx={{
+              textTransform: 'uppercase',
+              fontSize: '32px',
+              fontWeight: 700
+            }}
+          >
+            Cadastrar Cliente
+          </Typography>
+        </S.Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.WrapperInputs>
             <Grid container spacing={1}>
               <Grid item xs={5}>
-                <TextField
-                  label="Nome"
-                  {...register('name', { required: true })}
-                  id="name"
-                  variant="outlined"
-                  size="small"
-                  inputMode="text"
-                  type="text"
-                  fullWidth
-                  required
+                <AppInput
+                  label={'Nome'}
+                  id={'name'}
+                  type={'text'}
+                  required={true}
+                  control={control}
+                  helper={'Insira um nome'}
                 />
               </Grid>
               <Grid item xs={3.4}>
-                <TextField
-                  label="Telefone"
-                  {...register('phone', { required: true })}
+                <AppInput
+                  label={'Telefone'}
+                  id={'phone'}
+                  type={'tel'}
+                  required={true}
+                  control={control}
                   placeholder="Ex.: (57) 9 9726-5136"
-                  id="phone"
-                  size="small"
-                  inputMode="tel"
-                  type="tel"
-                  variant="outlined"
-                  fullWidth
-                  required
+                  helper={'Informe um telefone'}
                 />
               </Grid>
               <Grid item xs={3.4}>
-                <TextField
-                  label="CPF"
-                  {...register('cpf')}
+                <AppInput
+                  label={'CPF'}
+                  id={'cpf'}
+                  type={'text'}
+                  required={false}
+                  control={control}
                   placeholder="Ex.: 041.645.987-59"
-                  id="cpf"
-                  size="small"
-                  inputMode="text"
-                  type="text"
-                  variant="outlined"
-                  fullWidth
                 />
               </Grid>
               <Grid item xs={6.8}>
-                <TextField
-                  label="E-mail"
-                  {...register('email')}
-                  id="email"
-                  size="small"
-                  inputMode="email"
-                  type="email"
-                  variant="outlined"
-                  fullWidth
+                <AppInput
+                  label={'E-mail'}
+                  id={'email'}
+                  type={'email'}
+                  required={false}
+                  control={control}
+                  placeholder="Ex.: usuario@email.com"
                 />
               </Grid>
-              <S.FieldsetAddress>
-                <S.LegendAddress>Endereço</S.LegendAddress>
+              <S.Fieldset>
+                <S.Legend>Endereço</S.Legend>
                 <Grid container spacing={1}>
                   <Grid item xs={8}>
-                    <TextField
-                      label="Rua"
-                      {...register('address.street')}
-                      id="street"
+                    <AppInput
+                      label={'Rua'}
+                      id={'address.street'}
+                      type={'text'}
+                      required={false}
+                      control={control}
                       placeholder="Ex.: Av. Brasil..."
-                      size="small"
-                      inputMode="text"
-                      variant="outlined"
-                      fullWidth
                     />
                   </Grid>
                   <Grid item xs={2}>
-                    <TextField
-                      label="Numero"
-                      {...register('address.number')}
-                      id="number"
-                      size="small"
-                      inputMode="text"
-                      variant="outlined"
-                      fullWidth
+                    <AppInput
+                      label={'Número'}
+                      id={'address.number'}
+                      type={'text'}
+                      required={false}
+                      control={control}
                     />
                   </Grid>
                   <Grid item xs={2}>
-                    <TextField
-                      label="CEP"
-                      {...register('address.cep')}
-                      id="cep"
-                      size="small"
-                      inputMode="text"
-                      variant="outlined"
-                      fullWidth
+                    <AppInput
+                      label={'CEP'}
+                      id={'address.cep'}
+                      type={'text'}
+                      required={false}
+                      control={control}
                     />
                   </Grid>
                   <Grid item xs={5}>
-                    <TextField
-                      label="Cidade"
-                      {...register('address.city')}
-                      id="city"
-                      size="small"
-                      inputMode="text"
-                      variant="outlined"
-                      fullWidth
+                    <AppInput
+                      label={'Cidade'}
+                      id={'address.city'}
+                      type={'text'}
+                      required={false}
+                      control={control}
                     />
                   </Grid>
                   <Grid item xs={4}>
-                    <TextField
-                      label="Bairro"
-                      {...register('address.district')}
-                      id="district"
-                      size="small"
-                      inputMode="text"
-                      variant="outlined"
-                      fullWidth
+                    <AppInput
+                      label={'Bairro'}
+                      id={'address.district'}
+                      type={'text'}
+                      required={false}
+                      control={control}
                     />
                   </Grid>
                   <Grid item xs={1.5}>
@@ -156,7 +160,7 @@ export const FormClient = () => {
                     </FormControl>
                   </Grid>
                 </Grid>
-              </S.FieldsetAddress>
+              </S.Fieldset>
             </Grid>
           </S.WrapperInputs>
           <S.WrapperButton>

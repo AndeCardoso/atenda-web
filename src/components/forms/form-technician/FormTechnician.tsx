@@ -1,4 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { create } from 'store/Technician.store';
+
 import {
   Button,
   Grid,
@@ -10,14 +14,19 @@ import {
   Checkbox,
   FormControlLabel,
   Paper,
+  Typography,
 } from '@mui/material';
 
 import { ufBrStates, typesEquip } from 'utils/constants';
 import { ITechnicianForm } from 'models';
 
 import * as S from './styles';
+import { useEffect } from 'react';
 
 export const FormTechnician = () => {
+  const dispatch = useDispatch();
+  const technician = useSelector<RootState>((state: RootState) => state.technician);
+
   const {
     register,
     handleSubmit,
@@ -25,13 +34,28 @@ export const FormTechnician = () => {
   } = useForm<ITechnicianForm>();
 
   const onSubmit: SubmitHandler<ITechnicianForm> = (data) => {
-    console.log(data);
+    dispatch(create(data));
   };
+
+  useEffect(() => {
+    console.log(technician);
+  }, [technician]);
 
   return (
     <Paper elevation={3}>
       <S.FormContainer>
-        <S.Title>Cadastrar Técnico</S.Title>
+        <S.Title>
+          <Typography
+            color='primary'
+            sx={{
+              textTransform: 'uppercase',
+              fontSize: '32px',
+              fontWeight: 700
+            }}
+          >
+            Cadastrar Técnico
+          </Typography>
+        </S.Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.WrapperInputs>
             <Grid container spacing={1}>
@@ -45,7 +69,6 @@ export const FormTechnician = () => {
                   inputMode="numeric"
                   type="number"
                   value={'001'}
-                  disabled
                   fullWidth
                 />
               </Grid>

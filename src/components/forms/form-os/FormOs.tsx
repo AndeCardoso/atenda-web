@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { typesEquip } from 'utils/constants';
 import {
   Button,
   Grid,
@@ -12,12 +15,10 @@ import {
   FormControlLabel,
   Switch,
   Paper,
+  Typography,
 } from '@mui/material';
 
 import * as S from './styles';
-import { typesEquip } from 'utils/constants';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 export const FormOs = () => {
   const {
@@ -38,7 +39,18 @@ export const FormOs = () => {
   return (
     <Paper elevation={3}>
       <S.FormContainer>
-        <S.Title>Cadastrar Ordem de Serviço</S.Title>
+        <S.Title>
+          <Typography
+            color='primary'
+            sx={{
+              textTransform: 'uppercase',
+              fontSize: '32px',
+              fontWeight: 700
+            }}
+          >
+            Cadastrar Ordem de Serviço
+          </Typography>
+        </S.Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.WrapperInputs>
             <Grid container display="flex" spacing={1}>
