@@ -1,9 +1,6 @@
 import { BrowserRouter, Routes as Switch, Route, Navigate } from 'react-router-dom';
 import { Home, Dashboard } from 'pages';
-import { FormClient } from 'shared/components';
-import { FormOs } from 'components/forms/form-os/FormOs';
-import { Calendar } from 'components/calendar/Calendar';
-import { FormTechnician } from 'components/forms/form-technician/FormTechnician';
+import { FormClient, FormOs, Calendar, FormTechnician } from 'components';
 
 export const Routes = () => {
   return (
