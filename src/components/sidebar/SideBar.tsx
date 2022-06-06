@@ -53,11 +53,15 @@ const menuItems: IMenuItem[] = [
 export const SideBar = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const isOpenToggle = useSelector<RootState>((state: RootState) => state.sidebar.isOpen);
+  const isOpenToggle: boolean = useSelector<RootState>((state: RootState) => state.sidebar) as boolean;
 
+  const handlerToggle = () => {
+    dispatch(toggle());
+  };
+  
   return (
     <Drawer
-      open={isOpenToggle ? true : false}
+      open={isOpenToggle}
       variant="persistent"
     >
       <Box
@@ -79,7 +83,7 @@ export const SideBar = () => {
         >
           <S.Close>
             <IconButton
-              onClick={() => dispatch(toggle({isOpen: false}))}>
+              onClick={handlerToggle}>
               <ChevronLeftIcon sx={{color: 'white'}}/>
             </IconButton>
           </S.Close>
@@ -98,15 +102,13 @@ export const SideBar = () => {
         </Box>
         <Box flex={1}>
           {
-            menuItems.map(item => (
-              <>
-                <ListItemComponent
-                  label={item.label}
-                  icon={item.icon}
-                  link={item.link}
-                  key={item.index}
-                />
-              </>
+            menuItems.map((item, index) => (
+              <ListItemComponent
+                label={item.label}
+                icon={item.icon}
+                link={item.link}
+                key={index}
+              />
             ))
           }
         </Box>
