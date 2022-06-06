@@ -4,16 +4,17 @@ export const DarkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#523FC0',
-      contrastText: '#ffffff'
+      main: '#7ef29d',
+      dark: '#00000099',
+      contrastText: '#211161'
     },
     secondary: {
-      main: '#FF4C9A',
-      contrastText: '#ffffff'
+      main: '#211161',
+      contrastText: '#ffffff',
     },
     background: {
       paper: '#00080b',
-      default: '#00080b',
+      default: '#00080b'
     }
   }
 });
