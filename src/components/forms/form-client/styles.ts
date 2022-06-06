@@ -40,6 +40,7 @@ export const WrapperButton = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 15px;
+  
   button {
     margin: 0 5px;
   }

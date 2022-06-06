@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Button, Grid, FormControl, MenuItem, InputLabel, Select, Paper, Typography, Box } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { Button, Grid, FormControl, MenuItem, InputLabel, Select, Paper, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 import { create } from 'store/Client.store';
-import { RootState } from 'store';
 
 import { ufBrStates } from 'utils/constants';
 import { IClientForm } from 'models';
@@ -14,7 +12,6 @@ import * as S from './styles';
 
 export const FormClient = () => {
   const dispatch = useDispatch();
-  const client = useSelector<RootState>((state: RootState) => state.client);
 
   const {
     control,
@@ -25,11 +22,6 @@ export const FormClient = () => {
   const onSubmit: SubmitHandler<IClientForm> = (data) => {
     dispatch(create(data));
   };
-
-  useEffect(() => {
-    console.log(client);
-  }, [client]);
-  
 
   return (
     <Paper elevation={3}>
@@ -151,8 +143,8 @@ export const FormClient = () => {
                         size="small"
                         variant="outlined"
                       >
-                        {ufBrStates.map((state) => (
-                          <MenuItem value={state.VALUE} key={state.index}>
+                        {ufBrStates.map((state, index) => (
+                          <MenuItem value={state.VALUE} key={index}>
                             {state.VIEW}
                           </MenuItem>
                         ))}

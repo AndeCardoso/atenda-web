@@ -5,11 +5,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import './styleCalendar.css';
 // import interactionPlugin from '@fullcalendar/interaction';
 
-import * as S from './styled';
+import * as S from './styles';
 import { Paper, Typography } from '@mui/material';
 
 export const Calendar = () => {
-  const [events, setEvents] = useState([{
+  const [events] = useState([{
     allDay: true,
     title: '',
     date: '',
