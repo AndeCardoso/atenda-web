@@ -80,8 +80,8 @@ export const FormOs = () => {
                     variant="outlined"
                     required
                   >
-                    {clientList.map((technician) => (
-                      <MenuItem value={technician} key={technician}>
+                    {clientList.map((technician, index) => (
+                      <MenuItem value={technician} key={index}>
                         {technician}
                       </MenuItem>
                     ))}
@@ -113,8 +113,8 @@ export const FormOs = () => {
                         variant="outlined"
                         required
                       >
-                        {typesEquip.map((type) => (
-                          <MenuItem value={type.VALUE} key={type.index}>
+                        {typesEquip.map((type, index) => (
+                          <MenuItem value={type.VALUE} key={index}>
                             {type.VIEW}
                           </MenuItem>
                         ))}
@@ -154,7 +154,6 @@ export const FormOs = () => {
                       fullWidth
                     />
                   </Grid>
-
                   <Grid item xs={12}>
                     <TextField
                       label="Observações"
