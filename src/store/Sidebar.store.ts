@@ -1,18 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface IIsOpen {
-  isOpen: boolean;
-}
+import { createSlice } from '@reduxjs/toolkit';
 
 const sidebar = createSlice({
   name: 'sidebar',
-  initialState: <IIsOpen> {
-    isOpen: false
-  },
+  initialState: <boolean>false,
   reducers: {
-    toggle(state, action: PayloadAction<IIsOpen>) {
-      state.isOpen = action.payload.isOpen ;
-    }
+    toggle: (state: boolean) => state = !state
   }
 });
 
