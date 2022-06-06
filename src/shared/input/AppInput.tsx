@@ -1,8 +1,6 @@
 import { TextField } from '@mui/material';
 import { HTMLInputTypeAttribute } from 'react';
-import { Control, Controller, FieldValues } from 'react-hook-form';
-import InputMask from 'react-input-mask';
-import { cep, cpf } from 'utils/constants';
+import { Controller } from 'react-hook-form';
 
 interface IInput {
   control: any;
@@ -17,13 +15,12 @@ interface IInput {
 export const AppInput = ({ label, id, type, required, control, placeholder, helper }: IInput) => {
   return (
     <Controller
-      name={id}
       control={control}
       rules={{ required }}
+      name={id}
       render={({
-        field: {onChange, value},
-        fieldState: {error}
-      }) =>(
+        field: { onChange, value }, fieldState: { error }
+      }) => (
         <TextField
           variant="outlined"
           size="small"
@@ -35,9 +32,7 @@ export const AppInput = ({ label, id, type, required, control, placeholder, help
           type={type}
           onChange={onChange}
           value={value}
-          placeholder={placeholder}
-        />
-      )}
-    />
+          placeholder={placeholder} />
+      )}/>
   );
 };
