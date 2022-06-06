@@ -1,32 +1,30 @@
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppBar, Box, FormControlLabel, IconButton, Switch, useTheme } from '@mui/material';
-import { Menu, LightbulbOutlined, CalendarMonth, DownloadOutlined } from '@mui/icons-material';
+import { AppBar, Box, IconButton, useTheme } from '@mui/material';
+import { Menu, CalendarMonth, DownloadOutlined } from '@mui/icons-material';
 
-import { useAppThemeContext } from 'context/ThemeContext';
+import { ToggleTheme } from 'shared/index';
 
 import { SideBar } from 'components';
 import { toggle } from 'store/Sidebar.store';
-import { useEffect, useState } from 'react';
 import { RootState } from 'store';
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [margin, setMargin] = useState<string>(theme.spacing(1));
-  const isOpenToggle = useSelector<RootState>((state: RootState) => state.sidebar.isOpen);
+  const isOpenToggle = useSelector<RootState>((state: RootState) => state.sidebar);
   
   const toggleSidebar = () => {
-    dispatch(toggle({isOpen: true}));
+    dispatch(toggle());
   };
 
   useEffect(() => {
     setMargin(isOpenToggle ? theme.spacing(28) : theme.spacing(1));
   }, [isOpenToggle]);
   
-  const { toggleTheme } = useAppThemeContext();
-
   return (
     <Box>
       <SideBar/>
@@ -48,12 +46,7 @@ export const Dashboard = () => {
               <DownloadOutlined />
               <CalendarMonth />
             </Box>
-            <FormControlLabel
-              sx={{marginRight: '10px', display: 'flex', alignItems: 'center'}}
-              label={<LightbulbOutlined />}
-              control={<Switch defaultChecked onChange={toggleTheme} color='secondary' />}
-              labelPlacement="start"
-            />
+            <ToggleTheme />
           </Box>
         </Box>
       </AppBar>

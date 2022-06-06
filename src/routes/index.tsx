@@ -1,12 +1,17 @@
 import { BrowserRouter, Routes as Switch, Route, Navigate } from 'react-router-dom';
-import { Home, Dashboard } from 'pages';
-import { FormClient, FormOs, Calendar, FormTechnician } from 'components';
+import { Dashboard, Login } from 'pages';
+import {
+  FormClient,
+  FormOs,
+  Calendar,
+  FormTechnician
+} from 'components';
 
 export const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="/dashboard/" element={<Dashboard />} >
           <Route path='cadastro-os' element={<FormOs />} />
           <Route path='cadastro-cliente' element={<FormClient />} />

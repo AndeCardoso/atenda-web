@@ -1,11 +1,13 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import UserReducer from './User.store';
 import ClientReducer from './Client.store';
 import TechnicianReducer from './Technician.store';
 import SidebarReducer from './Sidebar.store';
 
 const store = configureStore({
   reducer: {
+    user: UserReducer,
     client: ClientReducer,
     technician: TechnicianReducer,
     sidebar: SidebarReducer,
