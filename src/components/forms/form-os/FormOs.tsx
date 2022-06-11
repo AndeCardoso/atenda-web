@@ -15,16 +15,15 @@ import {
   FormControlLabel,
   Switch,
   Paper,
-  Typography,
 } from '@mui/material';
 
 import * as S from './styles';
+import { SectionTitle } from 'shared';
 
 export const FormOs = () => {
   const {
     register,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit
   } = useForm<any>();
 
   const onSubmit: SubmitHandler<any> = (data) => {
@@ -39,18 +38,9 @@ export const FormOs = () => {
   return (
     <Paper elevation={3}>
       <S.FormContainer>
-        <S.Title>
-          <Typography
-            color='primary'
-            sx={{
-              textTransform: 'uppercase',
-              fontSize: '32px',
-              fontWeight: 700
-            }}
-          >
-            Cadastrar Ordem de Serviço
-          </Typography>
-        </S.Title>
+        <SectionTitle>
+          Cadastrar Ordem de Serviço
+        </SectionTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.WrapperInputs>
             <Grid container display="flex" spacing={1}>
@@ -89,9 +79,9 @@ export const FormOs = () => {
                 </FormControl>
               </Grid>
               <Grid item>
-                <Tooltip title="Cadastrar Novo Cliente">
+                <Tooltip title="Cadastrar Novo Cliente" arrow disableInteractive={true}>
                   <Link to="/dashboard/cadastro-cliente">
-                    <Button variant="contained" sx={{ height: '100%', width: '30px' }}>
+                    <Button variant="contained" sx={{ height: '100%', width: 'auto' }}>
                       <Icon>person_add_alt</Icon>
                     </Button>
                   </Link>

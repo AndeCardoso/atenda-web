@@ -7,13 +7,6 @@ export const FormContainer = styled.section`
   flex-wrap: wrap;
 `;
 
-export const Title = styled.h1`
-  display: flex;
-  text-transform: uppercase;
-  font-size: 32px;
-  color: #35ab9f;
-`;
-
 export const WrapperInputs = styled.div`
   width: 100%;
   display: flex;
@@ -25,7 +18,7 @@ export const Legend = styled.legend`
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.28);
+  color: ${props => props.theme};
 `;
 
 export const Fieldset = styled.fieldset`
@@ -35,7 +28,7 @@ export const Fieldset = styled.fieldset`
   border-radius: 5px;
   padding: 15px;
   margin-top: 10px;
-  border: 0.5px solid rgba(0, 0, 0, 0.23);
+  border: 0.5px solid ${props => props.theme};
 `;
 
 export const WrapperButton = styled.div`

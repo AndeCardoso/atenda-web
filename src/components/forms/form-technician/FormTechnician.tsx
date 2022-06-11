@@ -1,8 +1,5 @@
+import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import { create } from 'store/Technician.store';
-
 import {
   Button,
   Grid,
@@ -13,15 +10,18 @@ import {
   TextField,
   Checkbox,
   FormControlLabel,
-  Paper,
-  Typography,
+  Paper
 } from '@mui/material';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { create } from 'store/Technician.store';
 
 import { ufBrStates, typesEquip } from 'utils/constants';
 import { ITechnicianForm } from 'models';
 
+import { SectionTitle } from 'shared';
 import * as S from './styles';
-import { useEffect } from 'react';
 
 export const FormTechnician = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,6 @@ export const FormTechnician = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<ITechnicianForm>();
 
   const onSubmit: SubmitHandler<ITechnicianForm> = (data) => {
@@ -44,18 +43,9 @@ export const FormTechnician = () => {
   return (
     <Paper elevation={3}>
       <S.FormContainer>
-        <S.Title>
-          <Typography
-            color='primary'
-            sx={{
-              textTransform: 'uppercase',
-              fontSize: '32px',
-              fontWeight: 700
-            }}
-          >
-            Cadastrar Técnico
-          </Typography>
-        </S.Title>
+        <SectionTitle>
+          Cadastrar Técnico
+        </SectionTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.WrapperInputs>
             <Grid container spacing={1}>
@@ -69,6 +59,7 @@ export const FormTechnician = () => {
                   inputMode="numeric"
                   type="number"
                   value={'001'}
+                  disabled
                   fullWidth
                 />
               </Grid>
@@ -195,7 +186,7 @@ export const FormTechnician = () => {
                         size="small"
                         variant="outlined"
                       >
-                        {ufBrStates.map((state) => (
+                        {ufBrStates.map(state => (
                           <MenuItem value={state.VALUE} key={state.index}>
                             {state.VIEW}
                           </MenuItem>
@@ -221,7 +212,7 @@ export const FormTechnician = () => {
                         variant="outlined"
                         required
                       >
-                        {typesEquip.map((type) => (
+                        {typesEquip.map(type => (
                           <MenuItem value={type.VALUE} key={type.index}>
                             {type.VIEW}
                           </MenuItem>

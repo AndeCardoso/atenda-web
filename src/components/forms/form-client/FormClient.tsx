@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Button, Grid, FormControl, MenuItem, InputLabel, Select, Paper, Typography } from '@mui/material';
+import { Button, Grid, FormControl, MenuItem, InputLabel, Select, Paper } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 import { create } from 'store/Client.store';
@@ -7,7 +7,7 @@ import { create } from 'store/Client.store';
 import { ufBrStates } from 'utils/constants';
 import { IClientForm } from 'models';
 
-import { AppInput } from 'shared';
+import { AppInput, SectionTitle } from 'shared';
 import * as S from './styles';
 
 export const FormClient = () => {
@@ -26,25 +26,16 @@ export const FormClient = () => {
   return (
     <Paper elevation={3}>
       <S.FormContainer>
-        <S.Title>
-          <Typography
-            color='primary'
-            sx={{
-              textTransform: 'uppercase',
-              fontSize: '32px',
-              fontWeight: 700
-            }}
-          >
-            Cadastrar Cliente
-          </Typography>
-        </S.Title>
+        <SectionTitle>
+          Cadastrar Cliente
+        </SectionTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.WrapperInputs>
             <Grid container spacing={1}>
               <Grid item xs={5}>
                 <AppInput
                   label={'Nome'}
-                  id={'name'}
+                  name={'name'}
                   type={'text'}
                   required={true}
                   control={control}
@@ -54,7 +45,7 @@ export const FormClient = () => {
               <Grid item xs={3.4}>
                 <AppInput
                   label={'Telefone'}
-                  id={'phone'}
+                  name={'phone'}
                   type={'tel'}
                   required={true}
                   control={control}
@@ -65,7 +56,7 @@ export const FormClient = () => {
               <Grid item xs={3.4}>
                 <AppInput
                   label={'CPF'}
-                  id={'cpf'}
+                  name={'cpf'}
                   type={'text'}
                   required={false}
                   control={control}
@@ -75,7 +66,7 @@ export const FormClient = () => {
               <Grid item xs={6.8}>
                 <AppInput
                   label={'E-mail'}
-                  id={'email'}
+                  name={'email'}
                   type={'email'}
                   required={false}
                   control={control}
@@ -88,7 +79,7 @@ export const FormClient = () => {
                   <Grid item xs={8}>
                     <AppInput
                       label={'Rua'}
-                      id={'address.street'}
+                      name={'address.street'}
                       type={'text'}
                       required={false}
                       control={control}
@@ -98,7 +89,7 @@ export const FormClient = () => {
                   <Grid item xs={2}>
                     <AppInput
                       label={'Número'}
-                      id={'address.number'}
+                      name={'address.number'}
                       type={'text'}
                       required={false}
                       control={control}
@@ -107,7 +98,7 @@ export const FormClient = () => {
                   <Grid item xs={2}>
                     <AppInput
                       label={'CEP'}
-                      id={'address.cep'}
+                      name={'address.cep'}
                       type={'text'}
                       required={false}
                       control={control}
@@ -116,7 +107,7 @@ export const FormClient = () => {
                   <Grid item xs={5}>
                     <AppInput
                       label={'Cidade'}
-                      id={'address.city'}
+                      name={'address.city'}
                       type={'text'}
                       required={false}
                       control={control}
@@ -125,7 +116,7 @@ export const FormClient = () => {
                   <Grid item xs={4}>
                     <AppInput
                       label={'Bairro'}
-                      id={'address.district'}
+                      name={'address.district'}
                       type={'text'}
                       required={false}
                       control={control}
