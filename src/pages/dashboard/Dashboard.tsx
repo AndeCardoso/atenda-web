@@ -30,10 +30,14 @@ export const Dashboard = () => {
       <SideBar/>
       <AppBar
         position='relative'
-        sx={{height: '40px', boxShadow: 'none'}}>
+        sx={{
+          height: '40px',
+          boxShadow: 'none',
+          backgroundColor:`${theme.palette.primary.dark}`
+        }}>
         <Box
           display="flex"
-          alignItems="flex-start"
+          alignItems="center"
           justifyContent="space-between"
           marginBottom={theme.spacing(5)}>
           <IconButton
