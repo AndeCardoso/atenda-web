@@ -2,13 +2,12 @@ import { useRef, useState } from 'react';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import './styleCalendar.css';
-// import interactionPlugin from '@fullcalendar/interaction';
 
 import * as S from './styles';
-import { Paper, Typography } from '@mui/material';
+import { Paper, Typography, useTheme } from '@mui/material';
 
 export const Calendar = () => {
+  const appTheme = useTheme();
   const [events] = useState([{
     allDay: true,
     title: '',
@@ -30,10 +29,14 @@ export const Calendar = () => {
               fontWeight: 700
             }}
           >
-            Cadastrar Técnico
+            Cadastrar Agendamento
           </Typography>
         </S.Title>
-        <S.Calendar>
+        <S.Calendar
+          color={appTheme.palette.primary.main}
+          property={appTheme.palette.secondary.main}
+          theme={appTheme.palette.secondary.contrastText}
+        >
           <FullCalendar
             plugins={[ dayGridPlugin ]}
             ref={calendarRef}
