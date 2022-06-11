@@ -1,17 +1,12 @@
-import { useState } from 'react';
 import {
   Button,
   Checkbox,
-  FormControl,
   FormControlLabel,
   Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
   Link,
-  OutlinedInput,
   Typography,
-  useTheme } from '@mui/material';
+  useTheme
+} from '@mui/material';
 import { Box } from '@mui/system';
 
 import BgHome from 'assets/imgs/background.png';
@@ -23,20 +18,11 @@ import { IUser } from 'models';
 import { useDispatch } from 'react-redux';
 import { login } from 'store/User.store';
 
-import { AppInput, ToggleTheme } from 'shared';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { AppInput, AppInputPassword, ToggleTheme } from 'shared';
 
-interface IState {
-  password: string;
-  showPassword: boolean;
-}
+import { regExp } from 'utils/constants/regex';
 
 export const Login = () => {
-  const [values, setValues] = useState<IState>({
-    password: '',
-    showPassword: false,
-  });
-
   const dispatch = useDispatch();
 
   const theme = useTheme();
@@ -50,17 +36,6 @@ export const Login = () => {
   const onSubmit: SubmitHandler<IUser> = (data) => {
     console.log(data);
     dispatch(login(data));
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
   };
 
   return (
@@ -125,13 +100,14 @@ export const Login = () => {
         justifyContent="flex-start"
         alignItems="center"
         sx={{
-          backgroundColor: `${theme.palette.primary.dark}`,
+          backgroundColor: `${theme.palette.primary.light}`,
         }}
       >
         <Box
           display='flex'
           width='100%'
           justifyContent='flex-end'
+          marginTop='15px'
           marginBottom='90px'
         >
           <ToggleTheme />
@@ -161,38 +137,24 @@ export const Login = () => {
               <Grid item xs={12}>
                 <AppInput
                   label={'E-mail'}
-                  id={'email'}
+                  name={'email'}
                   type={'email'}
                   required={true}
                   control={control}
-                  placeholder="Ex.: usuario@provedor.com"
+                  pattern={regExp.email}
+                  helper={'Informe um e-mail válido'}
+                  placeholder={'Ex.: usuario@provedor.com'}
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControl
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                >
-                  <InputLabel htmlFor="password">Senha</InputLabel>
-                  <OutlinedInput
-                    id="password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    {...register('password', { required: true })}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
+                <AppInputPassword 
+                  label={'Senha'}
+                  name={'password'}
+                  required={true}
+                  control={control}
+                  helper={'Senha invalida'}
+                  pattern={regExp.min6}
+                />
               </Grid>
               <Grid item xs={6}>
                 <FormControlLabel

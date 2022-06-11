@@ -19,11 +19,18 @@ const user = createSlice({
         document.location.href = '/dashboard';
       }
     },
-    logout(state: IUser, action: PayloadAction<IUser>) {
-      state.name = action.payload.name;
+    logout(state: IUser) {
+      state = <IUser>{};
+      Cookies.remove('atenda-token');
+      document.location.href = '/';
     },
     getToken(state: IUser) {
-      state.token = Cookies.get('atenda-token') || '';
+      const token = Cookies.get('atenda-token');
+      if (token) {
+        state.token = token;
+      } else {
+        state = <IUser>{};
+      }
     }
   }
 });
