@@ -7,13 +7,15 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
-import { CSSObject, useTheme, Theme } from '@mui/material/styles';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useTheme } from '@mui/material/styles';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { ListItemComponent } from '../list-item/ListItem';
 import { RootState } from 'store';
 
 import * as S from './styles';
 import { toggle } from 'store/Sidebar.store';
+import { logout } from 'store/User.store';
 
 interface IMenuItem {
   [x: string]: Key | null | undefined;
@@ -22,25 +24,25 @@ interface IMenuItem {
   link: string;
 }
 
-const openedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: 'hidden',
-});
+// const openedMixin = (theme: Theme): CSSObject => ({
+//   transition: theme.transitions.create('width', {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.enteringScreen,
+//   }),
+//   overflowX: 'hidden',
+// });
 
-const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
+// const closedMixin = (theme: Theme): CSSObject => ({
+//   transition: theme.transitions.create('width', {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   overflowX: 'hidden',
+//   width: `calc(${theme.spacing(7)} + 1px)`,
+//   [theme.breakpoints.up('sm')]: {
+//     width: `calc(${theme.spacing(8)} + 1px)`,
+//   },
+// });
 
 const menuItems: IMenuItem[] = [
   { label: 'Inicio', icon: 'home', link: '/dashboard' },
@@ -51,12 +53,16 @@ const menuItems: IMenuItem[] = [
 ];
 
 export const SideBar = () => {
-  const theme = useTheme();
+  const appTheme = useTheme();
   const dispatch = useDispatch();
   const isOpenToggle: boolean = useSelector<RootState>((state: RootState) => state.sidebar) as boolean;
 
   const handlerToggle = () => {
     dispatch(toggle());
+  };
+  
+  const handlerLogout = () => {
+    dispatch(logout());
   };
   
   return (
@@ -65,37 +71,42 @@ export const SideBar = () => {
       variant="persistent"
     >
       <Box
-        width={theme.spacing(28)}
+        width={appTheme.spacing(28)}
         height="100%"
         display="flex"
         flexDirection="column"
       >
         <Box
           width="100%"
-          height={theme.spacing(16)}
+          height={appTheme.spacing(18)}
           display="flex"
           flexDirection="column"
           alignItems="center"
           justifyContent="flex-end"
           sx={{
-            backgroundColor: `${theme.palette.primary.main}`
+            backgroundColor: `${appTheme.palette.primary.main}`
           }}
         >
-          <S.Close>
+          
+          <S.TopButtons>
+            <IconButton
+              onClick={handlerLogout}>
+              <LogoutIcon sx={{color: appTheme.palette.primary.contrastText}}/>
+            </IconButton>
             <IconButton
               onClick={handlerToggle}>
-              <ChevronLeftIcon sx={{color: 'white'}}/>
+              <ChevronLeft sx={{color: appTheme.palette.primary.contrastText}}/>
             </IconButton>
-          </S.Close>
-          <S.Avatar>
+          </S.TopButtons>
+          <S.Avatar color={appTheme.palette.background.default}>
             <Avatar
-              sx={{ height: theme.spacing(8), width: theme.spacing(8)}}
+              sx={{ height: appTheme.spacing(8), width: appTheme.spacing(8)}}
               src="https://avatars.githubusercontent.com/u/11451126?s=96"
             />
           </S.Avatar>
           <S.UserName>
             <Typography
-              color={theme.palette.primary.contrastText}>
+              color={appTheme.palette.primary.contrastText}>
                 Anderson Cardoso
             </Typography>
           </S.UserName>

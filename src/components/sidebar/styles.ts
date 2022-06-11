@@ -1,19 +1,21 @@
 import styled from 'styled-components';
 
 export const Avatar = styled.div`
-  background-color: #ffffff;
+  background-color: ${props => props.color};
   border-radius: 50%;
-  padding: 3px;
+  border: none;
+  padding: 5px;
 `;
 
 export const UserName = styled.h2`
   font-size: 16px;
+  font-weight: 900;
 `;
 
-export const Close = styled.div`
+export const TopButtons = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: absolute;
   top: 0;
 `;
