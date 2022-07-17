@@ -1,4 +1,4 @@
-export interface IClientForm {
+export interface IClient {
   cpf?: string;
   name: string;
   phone: string;
@@ -6,7 +6,7 @@ export interface IClientForm {
   address?: IAddress;
 }
 
-interface IAddress {
+export interface IAddress {
   street?: string;
   number?: number;
   city?: string;

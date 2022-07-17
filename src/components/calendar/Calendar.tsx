@@ -8,39 +8,41 @@ import { Paper, Typography, useTheme } from '@mui/material';
 
 export const Calendar = () => {
   const appTheme = useTheme();
-  const [events] = useState([{
-    allDay: true,
-    title: '',
-    date: '',
-    id: ''
-  }]);
+  const [events] = useState([
+    {
+      allDay: true,
+      title: '',
+      date: '',
+      id: '',
+    },
+  ]);
 
   const calendarRef = useRef(null);
 
   return (
-    <Paper elevation={3} sx={{width: '100%'}}>
-      <S.FormContainer>
+    <Paper elevation={3} sx={{ width: '100%' }}>
+      <S.Container>
         <S.Title>
           <Typography
-            color='primary'
+            color="primary"
             sx={{
               textTransform: 'uppercase',
               fontSize: '32px',
-              fontWeight: 700
+              fontWeight: 700,
             }}
           >
             Cadastrar Agendamento
           </Typography>
         </S.Title>
         <S.Calendar
-          color={appTheme.palette.primary.main}
-          property={appTheme.palette.secondary.main}
-          theme={appTheme.palette.secondary.contrastText}
+          primary={appTheme.palette.primary.main}
+          secondary={appTheme.palette.secondary.main}
+          contrast={appTheme.palette.secondary.contrastText}
         >
           <FullCalendar
-            plugins={[ dayGridPlugin ]}
+            plugins={[dayGridPlugin]}
             ref={calendarRef}
-            events={{events}}
+            events={{ events }}
             selectable={true}
             weekends={false}
             locale="pt-br"
@@ -48,7 +50,7 @@ export const Calendar = () => {
             eventColor={'#35AB9F'}
           />
         </S.Calendar>
-      </S.FormContainer>
+      </S.Container>
     </Paper>
   );
 };

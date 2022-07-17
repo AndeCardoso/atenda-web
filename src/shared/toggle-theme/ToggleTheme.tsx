@@ -5,23 +5,21 @@ import { useAppThemeContext } from 'context/ThemeContext';
 import Cookies from 'js-cookie';
 import { Toggle } from './styles';
 
-export const ToggleTheme = () => {
-  const { toggleTheme, themeName } = useAppThemeContext();
+export const ToggleTheme = ({type}: any) => {
+  const { toggleWithTheme, toggleTheme, themeName } = useAppThemeContext();
 
   const appTheme = useTheme();
 
   const handlerChangeTheme = () => {
     toggleTheme();
+    Cookies.set('atenda-theme', themeName);
   };
 
   useEffect(() => {
-    if (Cookies.get('atenda-theme') !== themeName) {
-      toggleTheme();
-    }
-    console.log(themeName);
+    const theme = Cookies.get('atenda-theme') && Cookies.get('atenda-theme') === 'dark ' ? 'dark' : 'light';
+    toggleWithTheme(theme);
   }, []);
-  
-  
+
   return (
     <Toggle>
       <FormControlLabel
@@ -30,18 +28,23 @@ export const ToggleTheme = () => {
           display: 'flex',
           alignItems: 'center',
           height: '24px',
-          color: appTheme.palette.primary.main
+          color: type === 'dark' ? appTheme.palette.primary.main : appTheme.palette.secondary.main
         }}
         label={
-          themeName == 'dark' ? 
-            <NightsStayOutlined htmlColor={appTheme.palette.background.default}/> :
-            <WbSunny htmlColor={appTheme.palette.primary.contrastText}/> 
+          themeName == 'dark' ? (
+            <NightsStayOutlined htmlColor={type === 'dark' ? appTheme.palette.secondary.main : appTheme.palette.primary.main} />
+          ) : (
+            <WbSunny htmlColor={type === 'dark' ? appTheme.palette.secondary.main : appTheme.palette.primary.main} />
+          )
         }
         control={
           <Switch
             onChange={handlerChangeTheme}
-            color='primary'
-            data-testid='toggle'
+            color='secondary'
+            sx={{
+              color: appTheme.palette.primary.main,
+            }}
+            data-testid="toggle"
           />
         }
         labelPlacement="start"

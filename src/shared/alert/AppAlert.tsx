@@ -13,11 +13,8 @@ export const AppAlert = (props: IAlert): JSX.Element => {
   const [open, setOpen] = useState<boolean>(isOpen ? true : false);
 
   return (
-    <Snackbar
-      open={open}
-      autoHideDuration={3000}
-      onClose={() => setOpen(false)}>
-      <Alert severity={type} sx={{ width: '100%'}} onClose={() => setOpen(false)}>
+    <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
+      <Alert severity={type} sx={{ width: '100%' }} onClose={() => setOpen(false)}>
         {message}
       </Alert>
     </Snackbar>

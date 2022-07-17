@@ -6,7 +6,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  TextField
+  TextField,
 } from '@mui/material';
 import { HTMLInputTypeAttribute, useState } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
@@ -27,12 +27,9 @@ export const AppInput = ({ label, name, type, required, control, placeholder, he
   return (
     <Controller
       control={control}
-      rules={{ required, pattern, }}
+      rules={{ required, pattern }}
       name={name}
-      render={({
-        field: { onChange, value },
-        fieldState: { error }
-      }) => (
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextField
           variant="outlined"
           size="small"
@@ -75,17 +72,10 @@ export const AppInputPassword = ({ label, name, required, control, helper, patte
   return (
     <Controller
       control={control}
-      rules={{ required, pattern, }}
+      rules={{ required, pattern }}
       name={name}
-      render={({
-        field: { onChange, value },
-        fieldState: { error }
-      }) => (
-        <FormControl
-          variant="outlined"
-          size="small"
-          fullWidth
-        >
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
+        <FormControl variant="outlined" size="small" fullWidth>
           <InputLabel htmlFor="password">Senha</InputLabel>
           <OutlinedInput
             id={name}
@@ -96,19 +86,19 @@ export const AppInputPassword = ({ label, name, required, control, helper, patte
             error={!!error}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
+                <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end">
                   {values.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
           />
-          {
-            error ? <FormHelperText error id={label}>{helper}</FormHelperText> : <></>
-          }
+          {error ? (
+            <FormHelperText error id={label}>
+              {helper}
+            </FormHelperText>
+          ) : (
+            <></>
+          )}
         </FormControl>
       )}
     />

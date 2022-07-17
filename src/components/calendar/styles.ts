@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FormContainer = styled.section`
+export const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +14,7 @@ export const Title = styled.h1`
   font-size: 32px;
 `;
 
-export const Calendar = styled.div`
+export const Calendar = styled.div<{ primary: string; secondary: string; contrast: string }>`
   width: 100%;
 
   .fc {
@@ -30,26 +30,26 @@ export const Calendar = styled.div`
     margin-bottom: 0;
   }
 
-  .fc-direction-ltr .fc-button-group > .fc-button{
-    background-color: ${props => props.property};
-    border-color: ${props => props.color};
+  .fc-direction-ltr .fc-button-group > .fc-button {
+    background-color: ${({ secondary }) => secondary};
+    border-color: ${({ primary }) => primary};
   }
 
   .fc .fc-button-primary:disabled {
-    background-color: ${props => props.property};
-    color: ${props => props.theme};
-    border-color: ${props => props.color};
+    background-color: ${({ secondary }) => secondary};
+    color: ${({ contrast }) => contrast};
+    border-color: ${({ primary }) => primary};
   }
 
   .fc .fc-button-primary {
-    background-color: ${props => props.property};
-    color: ${props => props.theme};
-    border-color: ${props => props.color};
+    background-color: ${({ secondary }) => secondary};
+    color: ${({ contrast }) => contrast};
+    border-color: ${({ primary }) => primary};
   }
 
   .fc-header-toolbar {
-    background-color: ${props => props.color};
-    color: ${props => props.property};
+    background-color: ${({ primary }) => primary};
+    color: ${({ secondary }) => secondary};
     border-radius: 5px;
     height: 40px;
     margin-bottom: 0;
@@ -90,32 +90,31 @@ export const Calendar = styled.div`
   }
 
   @media only screen and (max-width: 768px) {
-
     .fc {
-        width: 300px;
+      width: 300px;
     }
 
     .appoint-top {
-        width: 300px;
+      width: 300px;
     }
 
     .appoint-btns {
-        flex-direction: column;
+      flex-direction: column;
     }
 
     .wrapper-agenda {
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .fc .fc-toolbar.fc-header-toolbar{
-        font-size: 10px;
+    .fc .fc-toolbar.fc-header-toolbar {
+      font-size: 10px;
     }
 
     .wrapper-agenda h1 {
-        font-size: 35px;
+      font-size: 35px;
     }
   }
 `;

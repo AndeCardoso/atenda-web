@@ -1,56 +1,49 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { AppBar, Box, IconButton, useTheme } from '@mui/material';
-import { Menu, CalendarMonth, DownloadOutlined } from '@mui/icons-material';
+import { AppBar, Box, useTheme } from '@mui/material';
+import { CalendarMonth, DownloadOutlined } from '@mui/icons-material';
+
+import BgHome from 'assets/imgs/background.png';
 
 import { ToggleTheme } from 'shared/index';
 
 import { SideBar } from 'components';
-import { toggle } from 'store/Sidebar.store';
 import { RootState } from 'store';
+import { useAppThemeContext } from 'context/ThemeContext';
 
 export const Dashboard = () => {
-  const dispatch = useDispatch();
+  const { themeName } = useAppThemeContext();
+
   const theme = useTheme();
+
   const [margin, setMargin] = useState<string>(theme.spacing(1));
+
   const isOpenToggle = useSelector<RootState>((state: RootState) => state.sidebar);
-  
-  const toggleSidebar = () => {
-    dispatch(toggle());
-  };
 
   useEffect(() => {
-    setMargin(isOpenToggle ? theme.spacing(28) : theme.spacing(1));
+    setMargin(isOpenToggle ? theme.spacing(28) : theme.spacing(6.5));
   }, [isOpenToggle]);
-  
+
   return (
     <Box>
-      <SideBar/>
+      <SideBar />
       <AppBar
-        position='relative'
+        position="relative"
         sx={{
           height: '40px',
           boxShadow: 'none',
-          backgroundColor:`${theme.palette.primary.dark}`
-        }}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          marginBottom={theme.spacing(5)}>
-          <IconButton
-            onClick={toggleSidebar}
-          >
-            <Menu sx={{color: 'white'}}/>
-          </IconButton>
-          <Box display="flex" alignItems="center">
+          backgroundColor: `${theme.palette.primary.main}`,
+        }}
+      >
+        <Box display="flex" alignItems="center" justifyContent="flex-end" marginBottom={theme.spacing(5)}>
+          <Box display="flex" alignItems="center" height={40}>
             <Box display="Flex" marginRight={theme.spacing(3)}>
-              <DownloadOutlined />
-              <CalendarMonth />
+              <DownloadOutlined color="secondary" />
+              <CalendarMonth color="secondary" />
             </Box>
-            <ToggleTheme />
+            <ToggleTheme type="dark" />
           </Box>
         </Box>
       </AppBar>
@@ -61,7 +54,15 @@ export const Dashboard = () => {
         justifyContent="flex-start"
         marginLeft={margin}
         padding={`${theme.spacing(2)} ${theme.spacing(15)}`}
-        sx={{height: '91vh',overflowY: 'scroll'}}>
+        sx={{
+          height: '91vh',
+          overflowY: 'scroll',
+          background: `url(${themeName == 'dark' ? BgHome : 'none'})`,
+          backgroundRepeat: 'none',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <Outlet />
       </Box>
     </Box>

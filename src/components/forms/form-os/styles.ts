@@ -1,17 +1,10 @@
 import styled from 'styled-components';
 
-export const FormContainer = styled.section`
-  max-width: 700px;
-  padding: 5px 15px 20px;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 export const Legend = styled.legend`
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
-  color: ${props => props.theme};
+  color: ${(props) => props.theme};
 `;
 
 export const Fieldset = styled.fieldset`
@@ -21,7 +14,7 @@ export const Fieldset = styled.fieldset`
   border-radius: 5px;
   padding: 15px;
   margin-top: 10px;
-  border: 0.5px solid ${props => props.theme};
+  border: 0.5px solid ${(props) => props.theme};
 `;
 
 export const WrapperInputs = styled.div`
@@ -36,6 +29,7 @@ export const WrapperButton = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 15px;
+
   button {
     margin: 0 5px;
   }

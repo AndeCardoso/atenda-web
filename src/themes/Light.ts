@@ -6,15 +6,15 @@ export const LightTheme = createTheme({
     primary: {
       main: '#211161',
       light: '#ffffff99',
-      contrastText: '#ffffff'
+      contrastText: '#ffffff',
     },
     secondary: {
-      main: '#7ef29d',
-      contrastText: '#000000'
+      main: '#00d0ff',
+      contrastText: '#000000',
     },
     background: {
       paper: '#FDFDFD',
       default: '#ffffff',
-    }
-  }
+    },
+  },
 });

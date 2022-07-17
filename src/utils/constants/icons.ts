@@ -2,7 +2,7 @@ export interface IObjectKeys {
   [key: string]: string | number;
 }
 
-export interface IIcons extends IObjectKeys{
+export interface IIcons extends IObjectKeys {
   home: string;
   newOS: string;
   newClient: string;
@@ -13,6 +13,7 @@ export interface IIcons extends IObjectKeys{
 export const muiIcons: IIcons = {
   home: 'home',
   newOS: 'edit_note',
+  newDevice: 'devices',
   newClient: 'assignment_ind',
   calendar: 'calendar_month',
   technician: 'handyman',
